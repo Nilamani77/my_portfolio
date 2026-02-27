@@ -1,10 +1,15 @@
-from flask import Flask, request, jsonify
-from flask import Flask, render_template
+from flask import Flask, request, jsonify, render_template
 import requests
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
 
-RESEND_API_KEY = "re_YLxVsBa5_13hw9ZhML7nWZ5tbTogYtG2V"
+
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
 
 
 @app.route("/")
@@ -23,21 +28,24 @@ def send_email():
             "Content-Type": "application/json",
         },
         json={
-            "from": "cyberhack@resend.dev",  
+            "from": "cyberhack@resend.dev",
             "to": "nilamanikundu2@gmail.com",
-            "reply_to": data["email"],   
+            "reply_to": data["email"],
             "subject": f"New Message from {data['name']}",
             "html": f"""
-        <h2>New Contact Form Message</h2>
-        <p><strong>Name:</strong> {data['name']}</p>
-        <p><strong>Email:</strong> {data['email']}</p>
-        <p><strong>Message:</strong></p>
-        <p>{data['message']}</p>
-    """
+                <h2>New Contact Form Message</h2>
+                <p><strong>Name:</strong> {data['name']}</p>
+                <p><strong>Email:</strong> {data['email']}</p>
+                <p><strong>Message:</strong></p>
+                <p>{data['message']}</p>
+            """
         }
     )
 
-    return jsonify({"status": response.status_code})
+    return jsonify({
+        "status": response.status_code,
+        "response": response.text
+    })
 
 
 if __name__ == "__main__":
