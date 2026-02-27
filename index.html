@@ -7,6 +7,9 @@
     <meta name="description"
         content="Nilamani Kundu - B.Tech AI & ML Student | Building Intelligent Systems & Modern Web Applications">
     <title>Nilamani Kundu | AI & ML Engineer</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -44,109 +47,82 @@
             overflow-x: hidden;
         }
 
+        @keyframes fadeInName {
+            from {
+                opacity: 0.6;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
         .loader {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background: var(--primary-bg);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 10001;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
         }
 
         .loader.hidden {
             opacity: 0;
             visibility: hidden;
+            transform: scale(1.1);
         }
 
-        .loader-3d {
-            width: 100px;
-            height: 100px;
+        .loader-container {
+            text-align: center;
+        }
+
+        /* Ring */
+        .loader-ring {
             position: relative;
-            transform-style: preserve-3d;
-            animation: rotateLoader 2s infinite linear;
+            width: 180px;
+            height: 180px;
+            margin: auto;
         }
 
-        .loader-face {
+        .loader-photo {
             position: absolute;
-            width: 100px;
-            height: 100px;
-            border: 2px solid var(--accent-cyan);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-cyan);
+            box-shadow: 0 0 40px rgba(0, 245, 255, 0.6);
+        }
+
+        /* Name */
+        .loader-name {
+            margin-top: 25px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent-cyan);
-            background: rgba(0, 245, 255, 0.1);
-            box-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .loader-face:nth-child(1) {
-            transform: translateZ(50px);
+        /* Percentage */
+        .loader-percent {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            font-weight: bold;
         }
 
-        .loader-face:nth-child(2) {
-            transform: rotateY(180deg) translateZ(50px);
-        }
-
-        .loader-face:nth-child(3) {
-            transform: rotateY(90deg) translateZ(50px);
-        }
-
-        .loader-face:nth-child(4) {
-            transform: rotateY(-90deg) translateZ(50px);
-        }
-
-        .loader-face:nth-child(5) {
-            transform: rotateX(90deg) translateZ(50px);
-        }
-
-        .loader-face:nth-child(6) {
-            transform: rotateX(-90deg) translateZ(50px);
-        }
-
-        @keyframes rotateLoader {
-            0% {
-                transform: rotateX(0) rotateY(0) rotateZ(0);
-            }
-
-            100% {
-                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-            }
-        }
-
-        .loader-progress {
-            width: 200px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            margin-top: 50px;
-            overflow: hidden;
-        }
-
-        .loader-bar {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-pink), var(--accent-purple));
-            border-radius: 2px;
-            animation: loadProgress 2s ease-in-out forwards;
-        }
-
-        @keyframes loadProgress {
-            0% {
-                width: 0%;
-            }
-
-            100% {
-                width: 100%;
-            }
+        /* Text */
+        .loader-text {
+            margin-top: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
         }
 
         #bg-canvas {
@@ -837,7 +813,6 @@
             animation: floatWater 4s ease-in-out infinite;
             border-radius: 20px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.15);
             transition: all 0.4s ease;
         }
 
@@ -851,12 +826,12 @@
             position: absolute;
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.15), transparent 70%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             animation: floatWater 6s ease-in-out infinite;
             z-index: 0;
+            display: none;
         }
 
         #internship .project-card {
@@ -866,7 +841,7 @@
 
         #internship .project-card:hover {
             transform: translateY(-20px) scale(1.03);
-            box-shadow: 0 25px 50px rgba(0, 255, 255, 0.35);
+
         }
 
 
@@ -1342,17 +1317,31 @@
 
 <body>
     <div class="loader" id="loader">
-        <div class="loader-3d">
-            <div class="loader-face">N</div>
-            <div class="loader-face">N</div>
-            <div class="loader-face">K</div>
-            <div class="loader-face">K</div>
-            <div class="loader-face">N</div>
-            <div class="loader-face">K</div>
+
+        <div class="loader-container">
+
+            <!-- Circular Ring + Photo -->
+            <div class="loader-ring">
+                <svg width="180" height="180">
+                    <circle cx="90" cy="90" r="80" stroke="rgba(255,255,255,0.1)" stroke-width="6" fill="none" />
+                    <circle cx="90" cy="90" r="80" stroke="url(#gradient)" stroke-width="6" fill="none"
+                        stroke-linecap="round" stroke-dasharray="502" stroke-dashoffset="502" id="progressCircle" />
+                    <defs>
+                        <linearGradient id="gradient">
+                            <stop offset="0%" stop-color="#00f5ff" />
+                            <stop offset="100%" stop-color="#ff00ff" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <img src="assets/images/nkg.jpeg" alt="Nilamani Kundu" class="loader-photo">
+            </div>
+            <h2 class="loader-name">Nilamani Kundu</h2>
+            <div class="loader-percent" id="loaderPercent">0%</div>
+            <p class="loader-text">Loading Portfolio...</p>
+
         </div>
-        <div class="loader-progress">
-            <div class="loader-bar"></div>
-        </div>
+
     </div>
     <canvas id="bg-canvas"></canvas>
     <nav id="navbar">
@@ -1505,21 +1494,55 @@
     <section id="internship">
         <div class="container">
             <h2 class="section-title fade-in">
-                <span>Internship & Certificates</span>
+                <span>Internship & Certifications</span>
             </h2>
 
-            <div class="project-card fade-in internship-card">
+            <div class="projects-grid">
 
-                <div class="project-image">
-                    <img src="assets/images/internship.jpg" alt="Python with MySQL Internship">
+                <!-- Internship Card -->
+                <div class="project-card fade-in internship-card">
+                    <div class="project-image">
+                        <img src="assets/images/internship.jpg" alt="Python with MySQL Internship">
+                    </div>
+                    <div class="project-content">
+                        <h3>Python with MySQL Internship</h3>
+                        <p>
+                            Completed hands-on internship focused on developing database-driven
+                            applications using Python and MySQL. Implemented CRUD operations,
+                            optimized queries, and designed structured relational database schemas
+                            for real-world application use.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">My-Sql</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="project-content">
-                    <h3>Python with MySQL Internship</h3>
-                    <p>
-                        Developed database-driven applications, implemented CRUD operations,
-                        and designed structured database schemas.
-                    </p>
+                <!-- Adobe Certification Card -->
+                <div class="project-card fade-in internship-card">
+                    <div class="project-image">
+                        <img src="assets/images/adobe.jpg" alt="Adobe Design Fundamentals with AI Certificate">
+                    </div>
+                    <div class="project-content">
+                        <h3>Design Fundamentals with AI – Adobe</h3>
+                        <p>
+                            Successfully completed the <strong>Design Fundamentals with AI</strong>
+                            program offered by Adobe under the YuWaah (Generation Unlimited)
+                            initiative in collaboration with UNICEF.
+                            Gained practical knowledge in AI-powered design tools,
+                            creative problem solving, and digital content creation.
+                            Achieved a perfect score of <strong>100%</strong>.
+                        </p>
+
+                        <div class="project-tech">
+                            <span class="tech-badge">Adobe</span>
+                            <span class="tech-badge">AI Tools</span>
+                            <span class="tech-badge">Digital Design</span>
+                            <span class="tech-badge">Creativity</span>
+                            <span class="tech-badge">UNICEF Initiative</span>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -1558,8 +1581,7 @@
                     <div class="timeline-content">
                         <div class="timeline-date">2021 - 2023</div>
                         <h3>12th Grade</h3>
-                        <h4>Odisha Board</h4>
-                        <p>51%</p>
+                        <h4>Kuchinda Higher Secondary School,Odisha Board</h4>
                     </div>
                 </div>
                 <div class="timeline-item fade-in">
@@ -1567,8 +1589,7 @@
                     <div class="timeline-content">
                         <div class="timeline-date">2021</div>
                         <h3>10th Grade</h3>
-                        <h4>Odisha Board</h4>
-                        <p>73%</p>
+                        <h4>Hemsagar High School,Odisha Board</h4>
                     </div>
                 </div>
             </div>
@@ -1711,8 +1732,42 @@
         }
         animateBg();
         window.addEventListener('resize', () => { bgCamera.aspect = window.innerWidth / window.innerHeight; bgCamera.updateProjectionMatrix(); bgRenderer.setSize(window.innerWidth, window.innerHeight); });
-        window.addEventListener('load', function () { setTimeout(function () { document.getElementById('loader').classList.add('hidden'); }, 2500); });
-        const skills = ['Python', 'AI', 'Web Development', 'Machine Learning'];
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const loader = document.getElementById("loader");
+            const circle = document.getElementById("progressCircle");
+            const percentText = document.getElementById("loaderPercent");
+
+            let percent = 0;
+            const radius = 80;
+            const circumference = 2 * Math.PI * radius;
+
+            circle.style.strokeDasharray = circumference;
+
+            const interval = setInterval(() => {
+                percent++;
+                percentText.textContent = percent + "%";
+
+                const offset = circumference - (percent / 100) * circumference;
+                circle.style.strokeDashoffset = offset;
+
+                if (percent >= 100) {
+                    clearInterval(interval);
+
+                    setTimeout(() => {
+                        loader.classList.add("hidden");
+
+                        // Completely remove loader from DOM after animation
+                        setTimeout(() => {
+                            loader.style.display = "none";
+                        }, 800);
+
+                    }, 300);
+                }
+            }, 15);
+
+        });
+        const skills = ['Python', 'Artificial Intilligence', 'Web Development','Problem Solver','Tech Enthusiast', 'Machine Learning'];
         let skillIndex = 0, charIndex = 0, isDeleting = false;
         const typingElement = document.getElementById('typing');
         function typeEffect() {
@@ -1779,4 +1834,5 @@
         });
     </script>
 </body>
+
 </html>
