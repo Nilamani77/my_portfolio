@@ -817,7 +817,7 @@
             font-weight: 600;
         }
 
-        
+
         @keyframes floatWater {
             0% {
                 transform: translateY(0px);
@@ -869,14 +869,14 @@
             box-shadow: 0 25px 50px rgba(0, 255, 255, 0.35);
         }
 
-       
+
         #internship .internship-card {
             width: 100%;
             border-radius: 25px;
             overflow: hidden;
         }
 
-        
+
         #internship .project-image {
             height: 280px;
             overflow: hidden;
@@ -1267,7 +1267,7 @@
     </nav>
     <section class="hero" id="home">
         <div class="hero-content">
-            <div class="hero-image-container"><img src="assets/images/nkg.jpeg" alt="Nilamani Kundu" class="hero-photo">
+            <div class="hero-image-container"><img src="static/assets/images/nkg.jpeg" alt="Nilamani Kundu" class="hero-photo">
             </div>
             <h1 class="hero-name">Nilamani Kundu</h1>
             <p class="hero-subtitle">B.Tech | Artificial Intelligence & Machine Learning</p>
@@ -1410,7 +1410,7 @@
             <div class="project-card fade-in internship-card">
 
                 <div class="project-image">
-                    <img src="assets/images/internship.jpg" alt="Python with MySQL Internship">
+                    <img src="static/assets/images/internship.jpg" alt="Python with MySQL Internship">
                 </div>
 
                 <div class="project-content">
@@ -1632,13 +1632,31 @@
             });
         }, observerOptions);
         document.querySelectorAll('.fade-in').forEach(el => { observer.observe(el); });
-        document.getElementById('contactForm').addEventListener('submit', function (e) { e.preventDefault(); const name = document.getElementById('name').value; const email = document.getElementById('email').value; const message = document.getElementById('message').value; console.log('Form submitted:', { name, email, message }); alert('Thank you for your message! I will get back to you soon.'); this.reset(); });
-        const sections = document.querySelectorAll('section');
-        const navLinksAll = document.querySelectorAll('.nav-links a');
-        window.addEventListener('scroll', function () {
-            let current = '';
-            sections.forEach(section => { const sectionTop = section.offsetTop; if (window.scrollY >= sectionTop - 200) { current = section.getAttribute('id'); } });
-            navLinksAll.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href') === '#' + current) { link.classList.add('active'); } });
+        document.getElementById('contactForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, message })
+                });
+
+                if (response.ok) {
+                    alert("Message sent successfully!");
+                    this.reset();
+                } else {
+                    alert("Failed to send message.");
+                }
+            } catch (error) {
+                alert("Server error. Make sure backend is running.");
+            }
         });
     </script>
 </body>
