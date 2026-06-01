@@ -1147,13 +1147,27 @@ html, body {
   /* --- CONTACT (mobile text visibility fix) --- */
   .contact-grid { grid-template-columns: 1fr !important; gap: 18px !important; }
   .contact-info { width: 100% !important; }
-  .contact-info-card { padding: 14px 14px !important; }
-  .contact-val { display: inline !important; }
-  .contact-lbl { display: inline-block !important; }
+  .contact-info-card {
+    padding: 16px 14px !important;
+    gap: 12px !important;
+    align-items: flex-start !important;
+  }
+
+  /* text clipping/visibility for mobile */
+  .contact-val {
+    display: inline !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
+  .contact-lbl {
+    display: inline-block !important;
+    white-space: normal !important;
+  }
+
 
   /* --- NAVBAR (avoid breaking layout with global !important overrides) --- */
-  .navbar-btn { display: none !important; }
-
 
 
   .mob-menu-btn {
