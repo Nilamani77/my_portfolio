@@ -71,14 +71,8 @@ export default function Footer() {
               <a href="https://github.com/Nilamani77" target="_blank" rel="noopener noreferrer">
                 <FiGithub />
               </a>
-              <a href="#">
+              <a href="https://www.linkedin.com/in/nilamani-kundu-8924bb259/">
                 <FiLinkedin />
-              </a>
-              <a href="#">
-                <FiInstagram />
-              </a>
-              <a href="#">
-                <FiTwitter />
               </a>
             </div>
           </div>
