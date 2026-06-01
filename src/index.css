@@ -1144,8 +1144,16 @@ html, body {
   .footer-title { font-size: 2.4rem; }
   .footer-bottom { padding-left: 10px; padding-right: 10px; }
 
+  /* --- CONTACT (mobile text visibility fix) --- */
+  .contact-grid { grid-template-columns: 1fr !important; gap: 18px !important; }
+  .contact-info { width: 100% !important; }
+  .contact-info-card { padding: 14px 14px !important; }
+  .contact-val { display: inline !important; }
+  .contact-lbl { display: inline-block !important; }
+
   /* --- NAVBAR (avoid breaking layout with global !important overrides) --- */
   .navbar-btn { display: none !important; }
+
 
 
   .mob-menu-btn {
