@@ -1107,8 +1107,18 @@ html, body {
    ========================================================================== */
 @media screen and (max-width: 768px) {
 
+  /* --- FOOTER: box fit for mobile --- */
+  .footer .container { padding-left: 18px; padding-right: 18px; }
+  .footer-card { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .footer-left { width: 100% !important; }
+  .footer-center { width: 100% !important; }
+  .footer-right { width: 100% !important; }
+  .footer-title { font-size: 2.4rem; }
+  .footer-bottom { padding-left: 10px; padding-right: 10px; }
+
   /* --- NAVBAR (avoid breaking layout with global !important overrides) --- */
   .navbar-btn { display: none !important; }
+
 
   .mob-menu-btn {
     display: flex !important;
@@ -1178,16 +1188,45 @@ html, body {
   }
 
   img { max-width: 100%; height: auto; }
+.footer-card {
+    padding: 30px 24px;
+    min-height: 420px; /* Box height increase */
+    border-radius: 24px;
+  }
 
-  /* --- FOOTER --- */
-  .footer-card { padding-left: 18px; padding-right: 18px; }
+  .footer-content {
+    gap: 28px;
+  }
 
-  /* Footer text smaller on mobile */
-  .footer-title { font-size: 2.4rem; }
-  .footer-desc { font-size: 13px; }
-  .footer-center h4, .footer-right h4 { font-size: 14px; }
-  .footer-links a, .footer-contact-links a { font-size: 13px; }
-  .footer-bottom { font-size: 12px; }
+  /* Footer text */
+  .footer-title {
+    font-size: 2.4rem;
+    line-height: 1.2;
+  }
+
+  .footer-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 100%;
+  }
+
+  .footer-center h4,
+  .footer-right h4 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .footer-links a,
+  .footer-contact-links a {
+    font-size: 14px;
+    padding: 6px 0;
+    display: inline-block;
+  }
+
+  .footer-bottom {
+    font-size: 13px;
+    padding-top: 20px;
+  }
 }
 
 
