@@ -262,10 +262,38 @@ button { font-family: var(--font-b); cursor: pointer; border: none; background: 
 
 /* ─── SECTION WRAPPER ─── */
 .section { position: relative; padding: 110px 0; width: 100%; }
+
+/* section ke bich thoda gap */
+.section + .section { margin-top: 22px; }
+
+@media (max-width: 768px) {
+  .section + .section { margin-top: 16px; }
+}
 .container { max-width: 1160px; margin: 0 auto; padding: 0 40px; }
 
 /* ─── SECTION LABEL ─── */
-.sec-label { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.sec-label {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* all sections me center */
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* if any section wraps sec-label in header-center, keep it centered */
+.header-center .sec-label { justify-content: center; }
+
+/* structure: num + line + text spacing consistent */
+.sec-label__num,
+.sec-label__line,
+.sec-label__text {
+  flex: 0 0 auto;
+}
+
+/* make the label text not shift/wrap weirdly */
+.sec-label__text {
+  text-align: center;
+}
 .sec-label__num { font-family: var(--font-m); font-size: 11px; color: var(--violet); letter-spacing: .2em; }
 .sec-label__line { width: 36px; height: 1px; background: linear-gradient(90deg, var(--purple), transparent); }
 .sec-label__text { font-family: var(--font-m); font-size: 11px; color: var(--dim); letter-spacing: .3em; }
