@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom' 
 import { AnimatePresence } from 'framer-motion'
 import Lenis from 'lenis'
 
@@ -17,6 +18,9 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Particles from './components/Particles'
 
+
+import AllAchievements from './components/AllAchievements' 
+
 export default function App() {
   const [loaded, setLoaded] = useState(false)
 
@@ -30,8 +34,7 @@ export default function App() {
       duration: 1.2,
       smoothWheel: true,
       touchMultiplier: 1.5,
-      easing: (t) =>
-        Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     })
 
     function raf(time) {
@@ -46,8 +49,29 @@ export default function App() {
     }
   }, [loaded])
 
+
+  const HomePage = () => (
+    <main
+      style={{
+        position: 'relative',
+        zIndex: 2,
+      }}
+    >
+      <Landing />
+      <About />
+      <Skills />
+      <Projects />
+      <Education />
+      <Certs />
+      <GithubSnake />
+      <Contact />
+      <Footer />
+    </main>
+  );
+
   return (
-    <>
+    
+    <Router>
       {/* ─────────────────────────────────────
          CUSTOM CURSOR
       ───────────────────────────────────── */}
@@ -80,20 +104,10 @@ export default function App() {
           {/* ─────────────────────────────────────
              FUTURISTIC BACKGROUND EFFECTS
           ───────────────────────────────────── */}
-
           <Particles />
-
-          {/* Grid Overlay */}
           <div className="name-grid-overlay"></div>
-
-
-          {/* Purple Glow */}
           <div className="bg-purple-glow"></div>
-
-          {/* Blue Glow */}
           <div className="bg-blue-glow"></div>
-
-          {/* Center Light */}
           <div className="bg-center-light"></div>
 
           {/* ─────────────────────────────────────
@@ -102,29 +116,18 @@ export default function App() {
           <Navbar />
 
           {/* ─────────────────────────────────────
-             MAIN CONTENT
+             ROUTES (Yeh decide karega kaunsa page dikhana hai)
           ───────────────────────────────────── */}
-          <main
-            style={{
-              position: 'relative',
-              zIndex: 2,
-            }}
-          >
-            {/* Landing Section */}
-            <Landing />
-
-            {/* Other Sections */}
-            <About />
-            <Skills />
-            <Projects />
-            <Education />
-            <Certs />
-            <GithubSnake />
-            <Contact />
-            <Footer />
-          </main>
+          <Routes>
+            {/* Jab URL "/" hoga, toh HomePage dikhega */}
+            <Route path="/" element={<HomePage />} />
+            
+            {/* Jab URL "/all-achievements" hoga, toh naya page dikhega */}
+            <Route path="/all-achievements" element={<AllAchievements />} />
+          </Routes>
+          
         </div>
       )}
-    </>
+    </Router>
   )
 }
