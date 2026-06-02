@@ -1117,168 +1117,139 @@ textarea.form-input { padding-top: 20px; }
 .spotlight-card:hover .spotlight-glow { opacity: 1; }
 
 /* ==========================================================================
-   1. GLOBAL FIXES (Ye screen ko tootne aur bahar jane se rokega)
-   ========================================================================== */
-*, *::before, *::after {
-  box-sizing: border-box !important;
-}
-
-html, body {
-  overflow-x: hidden !important; /* Horizontal scroll lock */
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* ==========================================================================
-   2. MOBILE RESPONSIVE UI (Tablets & Phones - Max-width: 768px)
+   MOBILE UI FIXES (Tablets & Phones - Max-width: 768px)
    ========================================================================== */
 @media screen and (max-width: 768px) {
+  
+  /* --- GLOBAL CONTAINMENT --- */
+  html, body { overflow-x: hidden !important; width: 100% !important; margin: 0 !important; padding: 0 !important; }
+  *, *::before, *::after { box-sizing: border-box !important; }
+  .container { padding: 0 20px !important; }
+  .section { padding: 70px 0 30px !important; }
 
-  /* --- FOOTER: box fit for mobile --- */
-  .footer .container { padding-left: 18px; padding-right: 18px; }
-  .footer-card { grid-template-columns: 1fr !important; gap: 28px !important; }
-  .footer-left { width: 100% !important; }
-  .footer-center { width: 100% !important; }
-  .footer-right { width: 100% !important; }
-  .footer-title { font-size: 2.4rem; }
-  .footer-bottom { padding-left: 10px; padding-right: 10px; }
-
-  /* --- NAVBAR (avoid breaking layout with global !important overrides) --- */
-  .navbar-btn { display: none !important; }
-
-
+  /* --- NAVBAR (Strictly Logo + 3 Bars) --- */
+  .navbar { padding: 12px 16px !important; }
+  .navbar-inner { 
+    display: flex !important; 
+    justify-content: space-between !important; 
+    align-items: center !important; 
+    padding: 8px 16px !important; 
+  }
+  
+  /* Force hide all elements inside navbar EXCPET logo and mobile menu button */
+  .navbar-inner > *:not(.navbar-logo):not(.mob-menu-btn) { display: none !important; } 
+  
   .mob-menu-btn {
     display: flex !important;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 20px;
-    background: transparent;
-    border: none;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 28px !important;
+    height: 20px !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
     cursor: pointer;
     z-index: 1000;
   }
-
   .mob-menu-btn span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: #fff;
-    border-radius: 4px;
+    display: block !important; 
+    width: 100% !important; 
+    height: 2.5px !important; 
+    background-color: var(--white) !important; 
+    border-radius: 4px !important;
   }
 
-  /* --- HERO SECTION: target real hero elements to prevent overflow --- */
-  #home {
-    min-height: 85vh !important;
-    padding-top: 95px;
-  }
+  /* --- HERO SECTION --- */
+  .hero { min-height: auto !important; padding: 120px 0 60px !important; }
+  .hero__content { text-align: center; margin: 0 auto; }
+  .hero__eyebrow, .hero__roles, .hero__socials, .hero__ctas { justify-content: center !important; }
+  .hero__name { font-size: 3rem !important; line-height: 1.1 !important; margin-bottom: 20px !important; }
+  .hero__desc { margin: 0 auto 32px !important; font-size: 14px !important; }
 
-  .hero-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 36px !important;
-    padding: 110px 18px 60px !important;
-  }
+  /* --- SKILLS GRID --- */
+  .skills-rings { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 20px 10px !important; margin-bottom: 40px !important; }
+  .skill-bars { grid-template-columns: 1fr !important; gap: 16px !important; }
 
-  .hero-right { width: 100%; }
+  /* --- PROJECTS SECTION --- */
+  .proj-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .modern-preview { height: 220px !important; margin: 10px !important; }
+  .proj-body { padding: 20px !important; }
+  .proj-title { font-size: 1.8rem !important; margin-bottom: 12px !important; }
+  .proj-actions { display: flex !important; flex-direction: row !important; gap: 12px !important; }
+  .proj-btn { flex: 1 !important; height: 45px !important; font-size: 13px !important; padding: 0 10px !important; }
 
-  /* floating/absolute elements safe sizing */
-  .hero-image-wrapper { width: min(320px, 86vw) !important; height: min(320px, 86vw) !important; }
-  .floating-card { max-width: 42vw; }
-
-  /* --- SECTION SPACING (keep normal styles; reduce instead of forcing all sections) --- */
-  .section { padding: 90px 0 60px 0; }
-
-  /* --- GRIDS --- */
-  .about-grid { grid-template-columns: 1fr; gap: 28px; }
-  .proj-grid,
-  .cert-grid,
-  .contact-grid { grid-template-columns: 1fr; gap: 18px; }
-
-  .edu-row { grid-template-columns: 1fr; gap: 12px; }
-
-  .skills-rings { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 18px 12px; }
-  .skill-bars { grid-template-columns: 1fr; gap: 14px; }
-
-  /* --- CARDS & IMAGES --- */
-  .proj-card, .edu-card, .cert-card, .github-card, .contact-card {
+  /* --- FOOTER (Strict Box Containment & Wrap) --- */
+  .footer { padding: 50px 0 20px !important; width: 100% !important; overflow: hidden !important; }
+  .footer .container { padding-left: 15px !important; padding-right: 15px !important; }
+  
+  .footer-card { 
+    padding: 30px 20px !important;
+    background: rgba(255,255,255,0.02) !important; 
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    border-radius: 20px !important;
+    display: flex !important;
+    flex-direction: column !important; 
+    gap: 30px !important; 
+    text-align: left !important; 
+    box-sizing: border-box !important;
     width: 100% !important;
-    border-radius: 14px !important;
+    overflow: hidden !important; /* Box ke bahar kuch nahi jayega */
+  }
+  
+  .footer-left, .footer-center, .footer-right { 
+    width: 100% !important; 
+    align-items: flex-start !important; 
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  
+  /* Text Wrapping - Forcing text inside boxes */
+  .footer-title, .footer-desc { 
+    text-align: left !important; 
+    white-space: normal !important;
+    word-break: break-word !important; /* Lamba text tut ke andar aayega */
+    width: 100% !important;
+  }
+  .footer-title { font-size: 2.2rem !important; }
+  
+  .footer-center h4::after, .footer-right h4::after { left: 0 !important; transform: none !important; }
+  .footer-socials { justify-content: flex-start !important; gap: 12px !important; flex-wrap: wrap !important; }
+  .footer-links { align-items: flex-start !important; }
+  
+  /* Contact Info / Button Wrappers inside Footer */
+  .footer-right a { 
+    justify-content: flex-start !important; 
+    padding: 12px 16px !important; 
+    width: 100% !important;
+    height: auto !important; /* Removes fixed height to allow wrapping */
+    min-height: 50px !important;
     box-sizing: border-box !important;
   }
-
-  .proj-title,
-  .footer-title,
-  .sec-title {
-    word-break: break-word;
-    overflow-wrap: anywhere;
+  .footer-right a span {
+    white-space: normal !important; /* Force text to wrap instead of cutting off */
+    word-break: break-word !important;
+    overflow: visible !important; 
+    font-size: 13px !important;
+    line-height: 1.4 !important;
   }
 
-  img { max-width: 100%; height: auto; }
-.footer-card {
-    padding: 30px 24px;
-    min-height: 420px; /* Box height increase */
-    border-radius: 24px;
-  }
+  .footer-bottom { flex-direction: column !important; align-items: center !important; gap: 12px !important; padding-top: 24px !important; text-align: center !important; width: 100% !important; }
 
-  .footer-content {
-    gap: 28px;
-  }
-
-  /* Footer text */
-  .footer-title {
-    font-size: 2.4rem;
-    line-height: 1.2;
-  }
-
-  .footer-desc {
-    font-size: 14px;
-    line-height: 1.8;
-    max-width: 100%;
-  }
-
-  .footer-center h4,
-  .footer-right h4 {
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
-
-  .footer-links a,
-  .footer-contact-links a {
-    font-size: 14px;
-    padding: 6px 0;
-    display: inline-block;
-  }
-
-  .footer-bottom {
-    font-size: 13px;
-    padding-top: 20px;
-  }
+  /* --- GRIDS & OTHER SECTIONS --- */
+  .about-grid, .cert-grid, .contact-grid { grid-template-columns: 1fr !important; gap: 24px !important; width: 100% !important; }
+  .edu-row { display: flex !important; flex-direction: column !important; gap: 16px !important; }
+  .edu-center-line, .edu-dot-col { display: none !important; }
+  .edu-left, .edu-right { padding: 0 !important; text-align: left !important; }
 }
 
-
-
 /* ==========================================================================
-   3. EXTRA SMALL PHONES (Max-width: 480px)
+   EXTRA SMALL PHONES (Max-width: 480px)
    ========================================================================== */
 @media screen and (max-width: 480px) {
-  .hero-name-line {
-    font-size: 1.8rem !important;
-  }
-
-  .hero__ctas {
-    flex-direction: column !important; 
-  }
-
-  .hero__ctas a {
-    width: 100% !important;
-    text-align: center !important;
-  }
-
-  /* Bohot chote phone par skills totally ek ke neeche ek aayenge */
-  .skills-rings, .skills-container {
-    flex-direction: column !important;
-    flex-wrap: nowrap !important;
-  }
+  .hero__name { font-size: 2.4rem !important; }
+  .hero__ctas { flex-direction: column !important; gap: 14px !important; width: 100% !important; }
+  .btn-primary, .btn-ghost { width: 100% !important; justify-content: center !important; }
+  .skills-rings { grid-template-columns: repeat(2, 1fr) !important; }
+  .footer-title { font-size: 1.8rem !important; }
+  .proj-btn { font-size: 12px !important; }
 }
