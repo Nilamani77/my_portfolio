@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-
-
+import { useNavigate } from 'react-router-dom'
 
 const EXPERIENCE = [
   {
@@ -43,6 +42,7 @@ const WORKSHOPS = [
 export default function Certs() {
   const ref = useRef()
   const inView = useInView(ref, { once: true, margin: '-60px' })
+  const navigate = useNavigate()
 
   return (
     <section id="certs" ref={ref} className="section">
@@ -399,8 +399,55 @@ export default function Certs() {
             </div>
           ))}
         </motion.div>
+
+        {/* ── NEW: "See My Full Potential" Button ── */}
+        <motion.div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: 48,
+          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.9 }}
+        >
+          <motion.a
+            onClick={() => navigate('/all-achievements')}
+            style={{
+              background: 'linear-gradient(90deg, #7c3aed, #a855f7)',
+              color: '#ffffff',
+              padding: '14px 36px',
+              borderRadius: '30px',
+              fontFamily: 'var(--font-m)',
+              fontSize: 15,
+              fontWeight: 600,
+              letterSpacing: '0.05em',
+              textDecoration: 'none',
+              boxShadow: '0 10px 30px rgba(124, 58, 237, 0.3)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              cursor: 'pointer',
+            }}
+            whileHover={{ 
+              scale: 1.05, 
+              boxShadow: '0 15px 40px rgba(124, 58, 237, 0.5)',
+              background: 'linear-gradient(90deg, #8b5cf6, #c084fc)'
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            See My Full Potential 
+            <svg 
+              width="18" height="18" viewBox="0 0 24 24" fill="none" 
+              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </motion.a>
+        </motion.div>
+
       </div>
     </section>
   )
 }
-
