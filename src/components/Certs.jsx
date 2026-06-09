@@ -389,9 +389,9 @@ export default function Certs() {
           transition={{ delay: 0.75 }}
         >
           {[
-            { n: '1', l: 'Internship', c: '#10b981' },
+            { n: '2', l: 'Internship', c: '#10b981' },
             { n: '2', l: 'Workshops', c: '#f59e0b' },
-            { n: '2024', l: 'Latest Activity', c: '#a855f7' },
+            { n: '2025', l: 'Latest Activity', c: '#a855f7' },
           ].map((s) => (
             <div key={s.l}>
               <div style={{ fontFamily: 'var(--font-h)', fontWeight: 800, fontSize: 36, color: s.c, textShadow: `0 0 22px ${s.c}55` }}>{s.n}</div>
